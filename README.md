@@ -1,54 +1,55 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+# Folder Structure in React
+src/
+│
+├── assets/                  # Şəkillər, fontlar, ikonlar, stil faylları (sass, css, less və s.)
+│   ├── images/
+│   ├── fonts/
+│   └── styles/
+│       ├── _variables.scss
+│       ├── _mixins.scss
+│       └── global.scss
+│
+├── components/              # Reusable və presentational komponentlər (atomic design)
+│   ├── UI/                  # Buttons, Inputs, Modals, Icons və s.
+│   ├── Layout/              # Header, Footer, Sidebar və s.
+│   └── common/              # Digər çox istifadə olunan komponentlər
+│
+├── features/                # Funksional modullar, hər biri öz sub-folderində (domain-driven)
+│   ├── auth/
+│   │   ├── components/      # Bu modulun komponentləri
+│   │   ├── hooks/           # Xüsusi hooklar
+│   │   ├── services/        # API çağırışları, servis funksiyaları
+│   │   ├── slices/          # Redux toolkit slice faylları (əgər redux varsa)
+│   │   ├── types.ts
+│   │   └── index.ts         # Modulun əsas exportları
+│   │
+│   ├── dashboard/
+│   └── profile/
+│
+├── hooks/                   # Layihə üzrə ümumi custom hooklar
+│
+├── services/                # API çağırışları, axios konfiqurasiyası, auth servisləri
+│   ├── api.ts               # Məsələn, axios instansiyası
+│   └── userService.ts
+│
+├── store/                   # Redux store, slice və middleware-lər
+│   ├── slices/              # Redux slices
+│   ├── middleware/
+│   └── index.ts             # Store konfigurasiya faylı
+│
+├── routes/                  # React Router konfiqurasiyası və marşrutlar
+│   └── index.tsx
+│
+├── utils/                   # Yardımçı funksiyalar, date formatter, validation və s.
+│
+├── types/                   # Layihə üzrə TypeScript tipləri, interface-lər
+│
+├── contexts/                # React kontekstləri (AuthContext, ThemeContext və s.)
+│
+├── constants/               # Sabitlər (məsələn, URL, status kodları və s.)
+│
+├── i18n/                    # Tərcümə və lokalizasiya faylları
+│
+├── App.tsx                  # Əsas App komponenti
+├── index.tsx                # ReactDOM renderi və əsas entry point
+└── vite-env.d.ts / react-app-env.d.ts
