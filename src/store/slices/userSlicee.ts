@@ -26,6 +26,7 @@ const userSlice = createSlice({
         state.tableData[index] = action.payload;
       }
     },
+    
   },
 });
 
